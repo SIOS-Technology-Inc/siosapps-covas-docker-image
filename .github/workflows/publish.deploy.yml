@@ -1,0 +1,65 @@
+name: publish.deploy
+
+on:
+  pull_request:
+    # TODO: remove after debugging.
+    paths:
+      - .github/workflows/publish.deploy.yml
+      - deploy/**
+  push:
+    branches:
+      - develop
+    paths:
+      - .github/workflows/publish.deploy.yml
+      - deploy/**
+
+env:
+  # Format:
+  # ghcr.io/sios-technology-inc/{PROJECT}-{IMAGE}:{VERSION}
+  PROJECT: covas-docker
+  IMAGE:   deploy
+  DOCKER_CLI_EXPERIMENTAL: enabled
+
+defaults:
+  run:
+    # Update this value to refer to {GitRoot}/{image}
+    working-directory: deploy
+
+# DO NOT EDIT: Below steps are same across the images.
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Enable QEMU to build images for Linux arm64 architecture.
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Download CLI tool to parse CHANGELOG.md headers.
+      # https://github.com/tomodian/release
+      - name: Download release tool
+        run: |
+          wget -q https://github.com/tomodian/release/releases/download/0.9.2/release_linux_amd64.zip -O release.zip
+          unzip release.zip
+
+      - name: Build
+        run: |
+          docker buildx create --use
+
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag ghcr.io/instoll/$PROJECT-$IMAGE:$(./release latest --any | tr -d '\n') \
+            --push .

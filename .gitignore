@@ -1,0 +1,28 @@
+*tmp
+*.db
+*-build
+*.log
+*.pyc
+*.swp
+*.swo
+*~
+
+# Files and directories.
+.DS_Store
+.cache
+.dev
+.envrc
+.env*
+.idea
+.vendor
+.vscode
+build
+coverage.txt
+
+# Only applies to top-level directories.
+/coverage
+
+# Exclude these files.
+!empty
+!.keep
+!.gitkeep
