@@ -61,5 +61,5 @@ jobs:
 
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
-            --tag ghcr.io/instoll/$PROJECT-$IMAGE:$(./release latest --any | tr -d '\n') \
+            --tag ghcr.io/sios-technology-inc/$PROJECT-$IMAGE:$(./release latest --any | tr -d '\n') \
             --push .
