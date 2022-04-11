@@ -12,9 +12,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - create new admin-tool container
-
-## [0.1.1] - 2022-04-11
-
-### Added
-
 - locale update LANG=ja_JP.UTF8
