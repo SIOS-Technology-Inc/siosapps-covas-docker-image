@@ -8,5 +8,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367 &&
     git \
     python3 \
     ansible \
-    language-pack-ja && \
+    locales && \
+    sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen && \
+    locale-gen && \
     update-locale LANG=ja_JP.UTF8
