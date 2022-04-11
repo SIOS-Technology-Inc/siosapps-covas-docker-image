@@ -7,4 +7,6 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367 &&
     bash \
     git \
     python3 \
-    ansible
+    ansible \
+    language-pack-ja && \
+    update-locale LANG=ja_JP.UTF8
