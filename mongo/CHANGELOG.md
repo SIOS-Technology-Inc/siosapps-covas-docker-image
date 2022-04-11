@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2022-04-08
+## [0.1.0] - 2022-04-11
 
 ### Added
 
-- Mirror mongo:3.2
-- Warning Not scanned for Log4Shell
+- Mirror mongo:4.2
