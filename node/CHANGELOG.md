@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-04-15
+
+### Added
+
+- Mirror node:16.14.2-alpine
+
 ## [0.1.0] - 2022-04-14
 
 ### Added
