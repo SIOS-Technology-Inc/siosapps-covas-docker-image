@@ -1,4 +1,4 @@
-FROM node:14.19.1-buster
+FROM node:16.14.2-buster
 # Debian OS.
 
 RUN echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian buster main" > /etc/apt/sources.list.d/buster.list && \
