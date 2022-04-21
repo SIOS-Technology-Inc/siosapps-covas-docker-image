@@ -1,14 +1,15 @@
-FROM alpine:3.9
+FROM alpine:3.15
 
-ENV TF_VERSION 0.12.16
+ENV TF_VERSION 0.13.7
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
 
-ENV ANSIBLE_VERSION 2.9.1
-ENV AWSCLI_VERSION  1.16.293
-ENV AZURE_VERSION   2.0.77
-ENV DOCKER_COMPOSE  1.25.0
-ENV DOCKER_ENGINE   4.1.0
+ENV ANSIBLE_VERSION 4.8.0
+ENV AWSCLI_VERSION  1.22.54
+ENV AZURE_VERSION   2.33.0
+ENV DOCKER_COMPOSE  1.29.2
+ENV DOCKER_ENGINE   5.0.3
 
+# Install OS dependencies.
 RUN echo "System dependencies" && \
       apk add --update \
         bash \
@@ -41,25 +42,23 @@ RUN echo "System dependencies" && \
         ansible==${ANSIBLE_VERSION} \
         docker-compose==${DOCKER_COMPOSE} \
         docker==${DOCKER_ENGINE} && \
+    echo "Terraform dependencies" && \
+      cd /tmp && \
+      wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_FILE} && \
+      unzip ${TF_FILE} && \
+      mv terraform /usr/bin && \
+      rm -f ${TF_FILE} && \
     echo "Azure dependencies" && \
       pip --no-cache-dir install azure-cli==${AZURE_VERSION} && \
     echo "AWS dependencies" && \
       pip --no-cache-dir install awscli==${AWSCLI_VERSION} && \
-    echo "Cleanup" && \
-      apk del --purge build-deps && \
-      rm -rf /var/cache/apk/*
-
-RUN echo "Terraform dependencies" && \
-      [[ "$(uname -m)" == "aarch64" ]] && export ARCH=arm || export ARCH=amd64 && \
-      cd /tmp && \
-      wget --quiet -O /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_${ARCH}.zip && \
-      unzip /tmp/terraform.zip && \
-      mv terraform /usr/bin && \
-      rm -f /tmp/terraform.zip && \
     echo "Install migrate util" && \
       wget https://github.com/instoll/alpine-mongoshell/releases/download/0.1.0/migrate && \
       chmod 0755 migrate && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
       npm config set unsafe-perm true && \
-      npm install -g @sentry/cli
+      npm install -g @sentry/cli && \
+    echo "Cleanup" && \
+      apk del --purge build-deps && \
+      rm -rf /var/cache/apk/*

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-04-21
+
+### Added
+
+- Ported ghcr.io/m-shibuya9/alpine-deploy-azure:0.17.0
+
 ## [0.1.0] - 2022-03-04
 
 ### Added
