@@ -1,4 +1,4 @@
-name: publish.codebuild-custom-image
+name: publish.codebuild-custom
 
 on:
   pull_request:
@@ -6,20 +6,20 @@ on:
     branches:
       - develop
     paths:
-      - .github/workflows/publish.codebuild-custom-image.yml
-      - codebuild-custom-image/**
+      - .github/workflows/publish.codebuild-custom.yml
+      - codebuild-custom/**
 
 env:
   # Format:
   # ghcr.io/sios-technology-inc/{PROJECT}-{IMAGE}:{VERSION}
   PROJECT: covas-docker
-  IMAGE:   codebuild-custom-image
+  IMAGE:   codebuild-custom
   DOCKER_CLI_EXPERIMENTAL: enabled
 
 defaults:
   run:
     # Update this value to refer to {GitRoot}/{image}
-    working-directory: codebuild-custom-image
+    working-directory: codebuild-custom
 
 # DO NOT EDIT: Below steps are same across the images.
 jobs:

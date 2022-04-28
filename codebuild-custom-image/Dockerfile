@@ -1,1 +1,0 @@
-FROM ghcr.io/m-shibuya9/codebuild-custom-image:0.7.0

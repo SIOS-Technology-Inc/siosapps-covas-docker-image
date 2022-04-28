@@ -11,4 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Mirror Codebuild Custom Image FROM ghcr.io/m-shibuya9/codebuild-custom-image:0.7.0
+- Create Codebuild Custom Image update docker:19-dind → docker:20-dind
