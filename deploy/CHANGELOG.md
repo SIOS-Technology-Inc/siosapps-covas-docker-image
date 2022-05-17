@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-05-17
+
+### Added
+
+- update terraform 0.15.5
+
 ## [0.2.0] - 2022-04-21
 
 ### Added
