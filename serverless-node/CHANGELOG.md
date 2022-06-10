@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Mirror node:16.15-buster
+- Create serverless-node base on node:16.15-buster
 
 ## [0.2.0] - 2022-04-15
 
