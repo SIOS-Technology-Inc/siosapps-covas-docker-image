@@ -53,7 +53,7 @@ RUN echo "System dependencies" && \
     echo "AWS dependencies" && \
       pip --no-cache-dir install awscli==${AWSCLI_VERSION} && \
     echo "Install migrate util" && \
-      wget https://github.com/instoll/alpine-mongoshell/releases/download/0.1.0/migrate && \
+      wget https://sios.tech/covas/migrate/releases/download/0.3.0/migrate && \
       chmod 0755 migrate && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
