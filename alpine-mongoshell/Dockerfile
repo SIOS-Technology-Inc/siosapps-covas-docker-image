@@ -12,6 +12,6 @@ RUN echo "System dependencies" && \
     apk add \
       mongodb-tools && \
     echo "Install migrate util" && \
-    wget https://github.com/instoll/alpine-mongoshell/releases/download/0.1.0/migrate && \
+    wget https://github.com/SIOS-Technology-Inc/covas-docker-image/releases/download/v0.1.0/migrate && \
     chmod 0755 migrate && \
     mv migrate /usr/bin
