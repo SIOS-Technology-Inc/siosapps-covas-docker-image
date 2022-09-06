@@ -3,4 +3,4 @@
 IMAGE := covas-docker-image/autify
 
 build:
-	docker build -t $(IMAGE) .
+	docker build --no-cache -t $(IMAGE) .
