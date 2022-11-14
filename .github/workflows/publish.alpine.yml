@@ -1,6 +1,9 @@
 name: publish.alpine
 
 on:
+  # 定期実行毎月1日
+  schedule:
+    - cron: '0 0 1 * *'
   push:
     branches:
       - develop

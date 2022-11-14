@@ -1,11 +1,10 @@
 name: publish.deploy
 
 on:
+  # 定期実行毎月1日
+  schedule:
+    - cron: '0 0 1 * *'
   pull_request:
-    # TODO: remove after debugging.
-    paths:
-      - .github/workflows/publish.deploy.yml
-      - deploy/**
   push:
     branches:
       - develop
