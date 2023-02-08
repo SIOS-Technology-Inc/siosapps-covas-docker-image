@@ -3,7 +3,7 @@ name: publish.mongo-express
 on:
   # 定期実行毎月1日
   schedule:
-    - cron: '0 0 1 * *'
+    - cron: "0 0 1 * *"
   pull_request:
   push:
     branches:
@@ -16,7 +16,7 @@ env:
   # Format:
   # ghcr.io/sios-technology-inc/{PROJECT}-{IMAGE}:{VERSION}
   PROJECT: covas-docker
-  IMAGE:   mongo-express
+  IMAGE: mongo-express
   DOCKER_CLI_EXPERIMENTAL: enabled
 
 defaults:
@@ -27,21 +27,21 @@ defaults:
 # DO NOT EDIT: Below steps are same across the images.
 jobs:
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Enable QEMU to build images for Linux arm64 architecture.
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
+          node-version: "16.x"
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
