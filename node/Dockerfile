@@ -1,1 +1,1 @@
-FROM node:16.15-alpine
+FROM node:16-alpine
