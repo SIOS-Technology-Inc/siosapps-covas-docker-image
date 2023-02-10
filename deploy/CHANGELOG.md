@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - update ansible 6.6.0
+- add libc6-compat
 
 ## [0.3.1] - 2022-07-07
 

@@ -32,6 +32,8 @@ RUN echo "System dependencies" && \
         musl-dev \
         openssl-dev \
         python3-dev && \
+        # migrationツールのバイナリが実行できなくなったので追加
+        libc6-compat && \ 
     echo "Python3 dependencies" && \
       python3 -m ensurepip && \
       pip3 install --upgrade pip cffi && \
