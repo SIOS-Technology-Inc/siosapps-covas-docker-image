@@ -39,7 +39,7 @@ RUN echo "System dependencies" && \
     echo "Python3 dependencies" && \
       pip3 install --upgrade pip cffi && \
       if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-      if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+      if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     echo "Ansible dependencies" && \
       pip --no-cache-dir install \
         ansible==${ANSIBLE_VERSION} \
