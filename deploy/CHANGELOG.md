@@ -7,13 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.3.2] - 2023-02-10
+## [1.0.0] - 2023-02-13
 
 ### Changed
-
+- change base image alpine -> ubuntu 
 - update ansible 6.6.0
-- add libc6-compat
-- update migrate tool
+- update migrate tool 0.4.0 -> 0.5.0
 
 ## [0.3.1] - 2022-07-07
 

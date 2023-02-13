@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM ubuntu:22.04
 
 ENV TF_VERSION 0.15.5
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
@@ -11,30 +11,32 @@ ENV DOCKER_ENGINE   5.0.3
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
-      apk add --update \
-        bash \
-        ca-certificates \
-        curl \
-        docker \
-        git \
-        gnupg \
-        jq \
-        make \
-        nodejs \
-        npm \
-        openssl \
-        python3 \
-        libc6-compat && \ 
-    echo "Build dependencies" && \
-      apk add --virtual build-deps \
-        build-base \
-        gcc \
-        libffi-dev \
-        musl-dev \
-        openssl-dev \
-        python3-dev && \
+      apt-get update && \
+      apt-get install -y \
+      gnupg \
+      software-properties-common \
+      curl \
+      wget \
+      ca-certificates \
+      apt-transport-https \
+      lsb-release \
+      unzip \
+      git \
+      jq \
+      make \
+      python3-pip && \
+    echo "dokcer dependencies" && \
+      mkdir -m 0755 -p /etc/apt/keyrings && \
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+      echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+      apt-get update && \
+      apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+    echo "nodejs dependencies" && \
+      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+      apt-get install -y nodejs && \
     echo "Python3 dependencies" && \
-      python3 -m ensurepip && \
       pip3 install --upgrade pip cffi && \
       if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
       if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
@@ -58,8 +60,6 @@ RUN echo "System dependencies" && \
       chmod 0755 migrate && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
-      npm config set unsafe-perm true && \
       npm install -g @sentry/cli && \
     echo "Cleanup" && \
-      apk del --purge build-deps && \
-      rm -rf /var/cache/apk/*
+      apt-get clean
