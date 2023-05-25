@@ -1,4 +1,4 @@
-FROM docker:20-dind
+FROM docker:24-dind
 
 RUN echo "Install build dependencies" && \
       apk update && \

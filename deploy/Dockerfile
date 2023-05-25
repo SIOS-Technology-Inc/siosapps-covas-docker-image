@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ENV TF_VERSION 1.1.9
+ENV TF_VERSION 1.2.9
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
 
 ENV ANSIBLE_VERSION 6.6.0
