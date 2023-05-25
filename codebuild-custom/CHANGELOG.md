@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2022-05-25
 
-### Updated
+### Changed
 
 - Create Codebuild Custom Image update docker:20-dind → docker:24-dind
 

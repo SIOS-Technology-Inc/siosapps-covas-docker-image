@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2023-05-25
 
-### Updated
+### Changed
 
 - mongo:4.2 -> 5.0
 
