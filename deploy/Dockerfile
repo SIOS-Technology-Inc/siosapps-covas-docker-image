@@ -12,6 +12,7 @@ ENV DOCKER_ENGINE   5.0.3
 # Install OS dependencies.
 RUN echo "System dependencies" && \
       apt-get update && \
+      apt-get upgrade -y && \
       apt-get install -y \
       gnupg \
       software-properties-common \

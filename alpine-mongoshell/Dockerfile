@@ -2,6 +2,8 @@ FROM alpine:3.17
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
+    apk update && \
+    apk upgrade && \
     apk add --update \
       bash \
       curl \

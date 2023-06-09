@@ -2,6 +2,7 @@ FROM docker:24-dind
 
 RUN echo "Install build dependencies" && \
       apk update && \
+      apk upgrade && \
       apk add --no-cache --virtual .deps \
         build-base \
         gcc \

@@ -1,7 +1,8 @@
 FROM node:18-buster
 # Debian OS.
 
-RUN echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian buster main" > /etc/apt/sources.list.d/buster.list && \
+RUN apt-get update && apt-get upgrade -y && \
+    echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian buster main" > /etc/apt/sources.list.d/buster.list && \
     sed -i '/deb http:\/\/deb.debian.org\/debian buster-updates main/d' /etc/apt/sources.list && \
     apt-get -o Acquire::Check-Valid-Until=false update && \
     apt-get -q install -y --no-install-recommends \
