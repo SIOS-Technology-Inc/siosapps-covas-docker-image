@@ -11,6 +11,7 @@ on:
     paths:
       - .github/workflows/publish.serverless-node.yml
       - serverless-node/**
+  workflow_dispatch:
 
 env:
   # Format:
