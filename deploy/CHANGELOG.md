@@ -6,23 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.1.1] - 2023-08-09
+
+### Added
+
+- yarn 1.22.10
+
 ## [1.2.0] - 2023-05-25
 
 ### Changed
+
 - terraform 1.1.9 -> 1.2.9
 
 ## [1.1.0] - 2023-02-10
+
 - update terraform 0.15.5 -> 1.1.9
 - update awscli 1.22.54 -> 1.27.88
 - update azure-cli 2.33.0 -> 2.45.0
 
 ## [1.0.1] - 2023-02-13
+
 - update migrate tool 0.5.0 -> 0.5.1
 
 ## [1.0.0] - 2023-02-13
 
 ### Changed
-- change base image alpine -> ubuntu 
+
+- change base image alpine -> ubuntu
 - update ansible 6.6.0
 - update migrate tool 0.4.0 -> 0.5.0
 

@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ENV TF_VERSION 1.2.9
+ENV TF_VERSION 1.1.9
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
 
 ENV ANSIBLE_VERSION 6.6.0
@@ -25,6 +25,7 @@ RUN echo "System dependencies" && \
       git \
       jq \
       make \
+      python3-dev \
       python3-pip && \
     echo "dokcer dependencies" && \
       mkdir -m 0755 -p /etc/apt/keyrings && \
@@ -37,12 +38,17 @@ RUN echo "System dependencies" && \
     echo "nodejs dependencies" && \
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
       apt-get install -y nodejs && \
+      npm install -g npm@latest && \
+      npm install -g yarn && \
     echo "Python3 dependencies" && \
       pip3 install --upgrade pip cffi && \
       if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
       if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     echo "Ansible dependencies" && \
       pip --no-cache-dir install \
+        # pyyaml==5.4.1のインストールでエラーが出るため、問題が解決されるまで5.3.1を指定
+        # https://github.com/yaml/pyyaml/issues/724
+        pyyaml==5.3.1 \ 
         ansible==${ANSIBLE_VERSION} \
         docker-compose==${DOCKER_COMPOSE} \
         docker==${DOCKER_ENGINE} && \
