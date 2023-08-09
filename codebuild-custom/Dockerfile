@@ -35,6 +35,9 @@ RUN echo "Install build dependencies" && \
       ln -sf /usr/bin/pip3 /usr/bin/pip && \
     echo "Install Ansible" && \
       pip install --no-cache-dir \
+        # pyyaml==5.4.1のインストールでエラーが出るため、問題が解決されるまで5.3.1を指定
+        # https://github.com/yaml/pyyaml/issues/724
+        pyyaml==5.3.1 \ 
         ansible \
         awscli \
         docker-compose \

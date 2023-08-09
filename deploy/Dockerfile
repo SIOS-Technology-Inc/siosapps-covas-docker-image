@@ -25,7 +25,6 @@ RUN echo "System dependencies" && \
       git \
       jq \
       make \
-      python3-dev \
       python3-pip && \
     echo "dokcer dependencies" && \
       mkdir -m 0755 -p /etc/apt/keyrings && \
