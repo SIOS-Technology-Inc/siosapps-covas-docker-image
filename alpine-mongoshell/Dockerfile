@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
@@ -12,7 +12,7 @@ RUN echo "System dependencies" && \
       ca-certificates && \
     echo "MongoDB dependencies" && \
     apk add \
-      mongodb-tools && \
+      mongodb-tools~=100.7.0 && \
     echo "Install migrate util" && \
     wget https://github.com/SIOS-Technology-Inc/covas-docker-image/releases/download/0.2.1/migrate && \
     chmod 0755 migrate && \
