@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2023-11-13
+
+### Changed
+
+- terraform 1.2.9 -> 1.5.7
+- ansible 6.6.0 -> 7.7.0
+- awscli 1.27.88 -> 1.29.84
+- azure-cli 2.45.0 -> 2.53.1
+
 ## [1.1.1] - 2023-08-09
 
 ### Added

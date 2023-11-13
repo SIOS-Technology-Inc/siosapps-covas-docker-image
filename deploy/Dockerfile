@@ -1,13 +1,11 @@
 FROM ubuntu:22.04
 
-ENV TF_VERSION 1.1.9
+ENV TF_VERSION 1.5.7
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
 
-ENV ANSIBLE_VERSION 6.6.0
-ENV AWSCLI_VERSION  1.27.88
-ENV AZURE_VERSION   2.45.0
-ENV DOCKER_COMPOSE  1.29.2
-ENV DOCKER_ENGINE   5.0.3
+ENV ANSIBLE_VERSION 7.7.0
+ENV AWSCLI_VERSION  1.29.84
+ENV AZURE_VERSION   2.53.1
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
@@ -45,12 +43,7 @@ RUN echo "System dependencies" && \
       if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     echo "Ansible dependencies" && \
       pip --no-cache-dir install \
-        # pyyaml==5.4.1のインストールでエラーが出るため、問題が解決されるまで5.3.1を指定
-        # https://github.com/yaml/pyyaml/issues/724
-        pyyaml==5.3.1 \ 
-        ansible==${ANSIBLE_VERSION} \
-        docker-compose==${DOCKER_COMPOSE} \
-        docker==${DOCKER_ENGINE} && \
+        ansible==${ANSIBLE_VERSION} && \
     echo "Terraform dependencies" && \
       cd /tmp && \
       wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_FILE} && \
@@ -68,4 +61,4 @@ RUN echo "System dependencies" && \
     echo "Sentry dependencies" && \
       npm install -g @sentry/cli && \
     echo "Cleanup" && \
-      apt-get clean
+      apt-get clean && apt-get autoremove -y
