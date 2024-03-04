@@ -1,11 +1,6 @@
 name: publish.autify
 
 on:
-  pull_request:
-    # TODO: remove after debugging.
-    paths:
-      - .github/workflows/publish.autify.yml
-      - autify/**
   push:
     branches:
       - develop

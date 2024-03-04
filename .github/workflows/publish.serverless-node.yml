@@ -1,17 +1,12 @@
 name: publish.serverless-node
 
 on:
-  # 定期実行毎月1日
-  schedule:
-    - cron: "0 0 1 * *"
-  pull_request:
   push:
     branches:
       - develop
     paths:
       - .github/workflows/publish.serverless-node.yml
       - serverless-node/**
-  workflow_dispatch:
 
 env:
   # Format:
