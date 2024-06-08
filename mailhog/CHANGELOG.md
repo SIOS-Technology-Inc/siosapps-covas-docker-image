@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-06-08
+
+### Changed
+- Change to an image that works with the AMD version.
+
 ## [0.1.0] - 2022-04-18
 
 ### Added
