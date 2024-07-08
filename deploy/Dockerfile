@@ -61,6 +61,14 @@ RUN echo "System dependencies" && \
     echo "Sentry dependencies" && \
       npm install -g @sentry/cli && \
     echo "MongoDB dependencies" && \
+      apt-get install -y \
+      libc6 \
+      libgssapi-krb5-2 \
+      libkrb5-3 \
+      libk5crypto3 \
+      libcomerr2 \
+      libkrb5support0 \
+      libkeyutils1 && \
       wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-${MONGO_DATABASE_TOOLS_VERSION}.deb && \
       apt-get install -y ./mongodb-database-tools-ubuntu2204-x86_64-${MONGO_DATABASE_TOOLS_VERSION}.deb && \
     echo "Cleanup" && \
