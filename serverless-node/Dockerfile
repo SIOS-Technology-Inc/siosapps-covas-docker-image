@@ -1,4 +1,4 @@
-FROM node:18-buster
+FROM node:20-buster
 # Debian OS.
 
 RUN apt-get update && apt-get upgrade -y && \
