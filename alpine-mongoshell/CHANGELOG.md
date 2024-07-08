@@ -9,6 +9,13 @@ mongodb-tools [version](https://pkgs.alpinelinux.org/packages?name=mongodb-tools
 
 ## [Unreleased]
 
+## [0.5.0] - 2024-07-08
+
+### Changed
+
+- update alpine from 3.18 to 3.20
+- mongodb-tools from 100.7.0-r3 to 100.9.4
+
 ## [0.4.1] - 2024-03-04
 
 ### Changed
