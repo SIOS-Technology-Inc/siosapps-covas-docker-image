@@ -1,11 +1,12 @@
 FROM ubuntu:22.04
 
-ENV TF_VERSION 1.5.7
+ENV TF_VERSION 1.7.5
 ENV TF_FILE    terraform_${TF_VERSION}_linux_amd64.zip
 
-ENV ANSIBLE_VERSION 7.7.0
-ENV AWSCLI_VERSION  1.29.84
-ENV AZURE_VERSION   2.53.1
+ENV ANSIBLE_VERSION 10.1.0
+ENV AWSCLI_VERSION  1.33.22
+ENV AZURE_VERSION   2.61.0
+ENV MONGO_DATABASE_TOOLS_VERSION 100.9.5
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
@@ -33,7 +34,7 @@ RUN echo "System dependencies" && \
       apt-get update && \
       apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
     echo "nodejs dependencies" && \
-      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+      curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
       apt-get install -y nodejs && \
       npm install -g npm@latest && \
       npm install -g yarn && \
@@ -60,5 +61,8 @@ RUN echo "System dependencies" && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
       npm install -g @sentry/cli && \
+    echo "MongoDB dependencies" && \
+      apt install \
+      mongodb-database-tools=${MONGO_DATABASE_TOOLS_VERSION} && \
     echo "Cleanup" && \
       apt-get clean && apt-get autoremove -y

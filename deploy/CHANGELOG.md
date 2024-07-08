@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-07-08
+
+### Changed
+
+- terraform 1.5.7 -> 1.7.5
+- ansible 7.7.0 -> 10.1.0
+- awscli 1.29.84 -> 1.33.22
+- azure-cli 2.53.1 -> 2.61.0
+
+### Added
+
+- mongodb-database-tools 100.9.5
+
 ## [1.3.1] - 2024-03-04
 
 ### Changed
