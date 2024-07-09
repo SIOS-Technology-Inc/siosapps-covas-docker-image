@@ -5,7 +5,6 @@ ENV TF_FILE=terraform_${TF_VERSION}_linux_amd64.zip
 ENV ANSIBLE_VERSION=10.1.0
 ENV AWSCLI_VERSION=1.33.22
 ENV AZURE_VERSION=2.61.0
-ENV MONGO_DATABASE_TOOLS_VERSION=100.9.5
 
 # Install OS dependencies.
 RUN echo "System dependencies" && \
@@ -60,16 +59,5 @@ RUN echo "System dependencies" && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
       npm install -g @sentry/cli && \
-    echo "MongoDB dependencies" && \
-      apt-get install -y \
-      libc6 \
-      libgssapi-krb5-2 \
-      libkrb5-3 \
-      libk5crypto3 \
-      libcomerr2 \
-      libkrb5support0 \
-      libkeyutils1 && \
-      wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-${MONGO_DATABASE_TOOLS_VERSION}.deb && \
-      apt-get install -y ./mongodb-database-tools-ubuntu2204-x86_64-${MONGO_DATABASE_TOOLS_VERSION}.deb && \
     echo "Cleanup" && \
       apt-get clean && apt-get autoremove -y

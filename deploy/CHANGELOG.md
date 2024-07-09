@@ -16,10 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - awscli 1.29.84 -> 1.33.22
 - azure-cli 2.53.1 -> 2.61.0
 
-### Added
-
-- mongodb-database-tools 100.9.5
-
 ## [1.3.1] - 2024-03-04
 
 ### Changed
