@@ -54,7 +54,8 @@ RUN echo "System dependencies" && \
     echo "AWS dependencies" && \
       pip --no-cache-dir install awscli==${AWSCLI_VERSION} && \
     echo "Install migrate util" && \
-      wget https://github.com/SIOS-Technology-Inc/covas-docker-image/releases/download/0.2.2/migrate && \
+      wget https://github.com/SIOS-Technology-Inc/siosapps-covas-migrate/releases/download/0.5.3/migrate-linux.zip && \
+      unzip migrate-linux.zip && \
       chmod 0755 migrate && \
       mv migrate /usr/bin && \
     echo "Sentry dependencies" && \
