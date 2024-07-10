@@ -9,6 +9,12 @@ mongodb-tools [version](https://pkgs.alpinelinux.org/packages?name=mongodb-tools
 
 ## [Unreleased]
 
+## [0.5.1] - 2024-07-10
+
+### Changed
+
+- migration tool 0.5.2 -> 0.5.3
+
 ## [0.5.0] - 2024-07-08
 
 ### Changed
