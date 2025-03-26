@@ -22,7 +22,8 @@ RUN echo "System dependencies" && \
   git \
   jq \
   make \
-  python3-pip && \
+  python3-pip \
+  python3-venv && \
   echo "dokcer dependencies" && \
   mkdir -m 0755 -p /etc/apt/keyrings && \
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
@@ -37,9 +38,14 @@ RUN echo "System dependencies" && \
   npm install -g npm@latest && \
   npm install -g yarn && \
   echo "Python3 dependencies" && \
-  pip3 install --break-system-packages --upgrade cffi && \
   if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
   if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+  python -m venv venv && \
+  . venv/bin/activate && \
+  pip install --upgrade pip cffi && \
+  echo "Ansible dependencies" && \
+  pip --no-cache-dir install \
+  ansible==${ANSIBLE_VERSION} && \
   echo "Terraform dependencies" && \
   cd /tmp && \
   wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_FILE} && \
@@ -47,9 +53,9 @@ RUN echo "System dependencies" && \
   mv terraform /usr/bin && \
   rm -f ${TF_FILE} && \
   echo "Azure dependencies" && \
-  pip --no-cache-dir install --break-system-packages azure-cli==${AZURE_VERSION} && \
+  pip --no-cache-dir install azure-cli==${AZURE_VERSION} && \
   echo "AWS dependencies" && \
-  pip --no-cache-dir install --break-system-packages awscli==${AWSCLI_VERSION} && \
+  pip --no-cache-dir install awscli==${AWSCLI_VERSION} && \
   echo "Install migrate util" && \
   wget https://github.com/SIOS-Technology-Inc/siosapps-covas-migrate/releases/download/0.7.0/migrate-linux.zip && \
   unzip migrate-linux.zip && \

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - ubuntu 22.04 -> 24.04
-
+- python venv 導入
 
 ## [1.6.0] - 2025-01-14
 
