@@ -19,11 +19,6 @@ env:
   IMAGE: deploy
   DOCKER_CLI_EXPERIMENTAL: enabled
 
-defaults:
-  run:
-    # Update this value to refer to {GitRoot}/{image}
-    working-directory: deploy
-
 # DO NOT EDIT: Below steps are same across the images.
 jobs:
   prebuild:
@@ -57,6 +52,9 @@ jobs:
     runs-on: [self-hosted, linux, x64, "${{ needs.prebuild.outputs.instance }}"]
     outputs:
       instance: ${{ needs.prebuild.outputs.instance }}
+    defaults:
+      run:
+        working-directory: deploy
     steps:
       - uses: actions/checkout@v4
 
