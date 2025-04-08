@@ -28,9 +28,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Enable QEMU to build images for Linux arm64 architecture.
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
 
       - uses: actions/setup-node@v3
         with:
