@@ -27,7 +27,7 @@ defaults:
 # DO NOT EDIT: Below steps are same across the images.
 jobs:
   publish:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
