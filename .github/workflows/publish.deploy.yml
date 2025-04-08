@@ -45,7 +45,7 @@ jobs:
       - name: AWS Lambda
         id: start-ec2
         run: |
-          payload=$(echo -n '{"Action": "start", "InstanceType": "t3a.medium", "InstanceId": ""}' | base64)
+          payload=$(echo -n '{"Action": "start", "InstanceType": "", "LaunchTemplateId": "lt-0ce2eecc8d493f44e", "InstanceId": ""}' | base64)
           aws lambda invoke \
             --payload "$payload" \
             --function-name RunnerUp \
