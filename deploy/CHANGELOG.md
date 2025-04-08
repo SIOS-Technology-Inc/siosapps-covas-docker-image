@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ubuntu 22.04 -> 24.04
 - python venv 導入
 - ansible 10.1.0 -> 10.7.0
+- awscli 1.33.22 -> 2.25.12 
 
 ## [1.6.0] - 2025-01-14
 
