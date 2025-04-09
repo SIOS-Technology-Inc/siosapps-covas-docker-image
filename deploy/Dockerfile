@@ -1,3 +1,4 @@
+# github actions でビルドするとめちゃくちゃ時間がかかるので手元の環境でビルドしてプッシュする
 FROM ubuntu:24.04
 
 ENV TF_VERSION=1.7.5
