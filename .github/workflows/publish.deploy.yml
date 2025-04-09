@@ -21,37 +21,9 @@ env:
 
 # DO NOT EDIT: Below steps are same across the images.
 jobs:
-  prebuild:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    outputs:
-      instance: ${{ steps.start-ec2.outputs.instance }}
-    steps:
-      # https://github.com/actions/checkout
-      - uses: actions/checkout@v4
-      # aws login
-      - name: AWS Login
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ap-northeast-1
-      # AWS Lambdaを実行
-      - name: AWS Lambda
-        id: start-ec2
-        run: |
-          payload=$(echo -n '{"Action": "start", "InstanceType": "", "LaunchTemplateId": "lt-0ce2eecc8d493f44e", "InstanceId": ""}' | base64)
-          aws lambda invoke \
-            --payload "$payload" \
-            --function-name RunnerUp \
-            --region ap-northeast-1 \
-            output.json
-          echo "instance=$(cat output.json | jq -r '.InstanceId')" >> $GITHUB_OUTPUT
   publish:
     needs: prebuild
-    runs-on: [self-hosted, linux, x64, "${{ needs.prebuild.outputs.instance }}"]
-    outputs:
-      instance: ${{ needs.prebuild.outputs.instance }}
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: deploy
@@ -60,7 +32,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: "20.x"
+          node-version: "22.x"
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -84,25 +56,3 @@ jobs:
             --platform linux/amd64,linux/arm64 \
             --tag ghcr.io/sios-technology-inc/$PROJECT-$IMAGE:$(./release latest --any | tr -d '\n') \
             --push .
-  postbuild:
-    if: ${{ always() }}
-    needs: publish
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      # aws login
-      - name: AWS Login
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ap-northeast-1
-      # AWS Lambdaを実行
-      - name: AWS Lambda
-        run: |
-          payload=$(echo -n '{"Action": "stop", "InstanceId": "${{ needs.publish.outputs.instance }}"}' | base64)
-          aws lambda invoke \
-            --payload "$payload" \
-            --function-name RunnerUp \
-            --region ap-northeast-1 \
-            output.json
