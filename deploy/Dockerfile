@@ -51,8 +51,8 @@ RUN echo "System dependencies" && \
   pip install --upgrade pip cffi && \
   echo "Ansible dependencies" && \
   pip --no-cache-dir install \
-  requests \
-  ansible==${ANSIBLE_VERSION} && \
+  ansible==${ANSIBLE_VERSION} \
+  requests && \
   echo "ログイン時にvenvを有効化する" && \
   echo "source /venv/bin/activate" >> /root/.bashrc && \
   echo "Terraform dependencies" && \
