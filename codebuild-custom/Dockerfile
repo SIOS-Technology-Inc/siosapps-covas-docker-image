@@ -1,47 +1,45 @@
-FROM docker:24-dind
+FROM docker:28-dind
 
 RUN echo "Install build dependencies" && \
-      apk update && \
-      apk upgrade && \
-      apk add --no-cache --virtual .deps \
-        build-base \
-        gcc \
-        libc-dev \
-        libffi-dev \
-        linux-headers \
-        musl-dev \
-        openssl-dev \
-        python3-dev && \
-    echo "Install OS dependencies" && \
-      apk add --no-cache \
-        bash \
-        curl \
-        jq \
-        git \
-        make \
-        nodejs \
-        npm \
-        python3 \
-        py3-pip \
-        yarn \
-        zip && \
-    echo "Install yq" && \
-      wget https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64 -O /usr/bin/yq && \
-      chmod 0755 /usr/bin/yq && \
-    echo "Symlink python3 dependencies to python" && \
-      python3 -m ensurepip && \
-      pip3 install --upgrade pip cffi && \
-      ln -sf /usr/bin/python3 /usr/bin/python && \
-      ln -sf /usr/bin/pip3 /usr/bin/pip && \
-    echo "Install Ansible" && \
-      pip install --no-cache-dir \
-        # pyyaml==5.4.1のインストールでエラーが出るため、問題が解決されるまで5.3.1を指定
-        # https://github.com/yaml/pyyaml/issues/724
-        pyyaml==5.3.1 \ 
-        ansible \
-        awscli \
-        docker-compose \
-        PyGithub \
-        pyyaml && \
-    echo "Cleanup" && \
-      apk del .deps
+  apk update && \
+  apk upgrade && \
+  apk add --no-cache --virtual .deps \
+  build-base \
+  gcc \
+  libc-dev \
+  libffi-dev \
+  linux-headers \
+  musl-dev \
+  openssl-dev \
+  python3-dev && \
+  echo "Install OS dependencies" && \
+  apk add --no-cache \
+  bash \
+  curl \
+  jq \
+  git \
+  make \
+  nodejs \
+  npm \
+  python3 \
+  py3-pip \
+  yarn \
+  zip && \
+  echo "Install yq" && \
+  wget https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64 -O /usr/bin/yq && \
+  chmod 0755 /usr/bin/yq && \
+  echo "Symlink python3 dependencies to python" && \
+  python3 -m venv venv && \
+  . venv/bin/activate && \
+  python3 -m ensurepip && \
+  pip3 install --upgrade pip cffi && \
+  ln -sf /usr/bin/python3 /usr/bin/python && \
+  ln -sf /usr/bin/pip3 /usr/bin/pip && \
+  echo "Install Ansible" && \
+  pip install --no-cache-dir \
+  ansible \
+  awscli \
+  PyGithub \
+  pyyaml==6.0.2 && \
+  echo "Cleanup" && \
+  apk del .deps
