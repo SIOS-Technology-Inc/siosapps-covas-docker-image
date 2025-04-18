@@ -40,6 +40,7 @@ RUN echo "Install build dependencies" && \
   ansible \
   awscli \
   PyGithub \
-  pyyaml==6.0.2 && \
+  docker-compose \
+  pyyaml==5.3.1 && \
   echo "Cleanup" && \
   apk del .deps
