@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Update Go version from 1.18 to 1.23
+- Update Go version from 1.18 to 1.25
 - Fix Dockerfile AS keyword casing
 - Build for linux/amd64 only (removed linux/arm64)
 - Add provenance=false option to docker build
