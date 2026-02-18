@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.3.0] - 2025-04-16
+
 ### Changed
+
 - Create Codebuild Custom Image update docker:24-dind → docker:28-dind
 - Remove docker-compose
 
