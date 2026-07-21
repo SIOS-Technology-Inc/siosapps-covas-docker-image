@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-07-21
+
+### Changed
+- ansible 10.7.0 -> 14.2.0
+
 ## [1.7.0] - 2025-03-19
 
 ### Changed
